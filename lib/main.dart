@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'navbar.dart';
-import 'pages/beranda_page.dart';
-
 
 void main() {
   runApp(const MyApp());
