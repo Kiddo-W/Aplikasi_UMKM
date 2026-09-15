@@ -24,7 +24,7 @@ class _KeranjangPageState extends State<KeranjangPage> {
   }
 
   int _hargaSatuan(MenuItem item) {
-    final angka = RegExp(r'[\d.]+').firstMatch(item.price)?.group(0) ?? '0';
+    final angka = RegExp(r'\d{1,3}(\.\d{3})+').firstMatch(item.price)?.group(0) ?? '0';
     return int.parse(angka.replaceAll('.', ''));
   }
 
@@ -39,14 +39,20 @@ class _KeranjangPageState extends State<KeranjangPage> {
     final itemAktif = widget.items.where((item) => item.quantity > 0).toList();
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF7F7F7),
       body: SafeArea(
         child: Column(
           children: [
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 16),
-              color: const Color(0xFF064D2C),
+              decoration: const BoxDecoration(
+                color: Color(0xFF064D2C),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+              ),
               child: Row(
                 children: [
                   IconButton(
@@ -70,25 +76,42 @@ class _KeranjangPageState extends State<KeranjangPage> {
             ),
             Expanded(
               child: itemAktif.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'Keranjang masih kosong',
-                        style: TextStyle(color: Colors.grey),
+                  ? Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.shopping_cart_outlined, size: 64, color: Colors.grey.shade300),
+                          const SizedBox(height: 12),
+                          Text(
+                            'Keranjang masih kosong',
+                            style: TextStyle(color: Colors.grey.shade500),
+                          ),
+                        ],
                       ),
                     )
                   : ListView.builder(
                       padding: const EdgeInsets.all(16),
                       itemCount: itemAktif.length,
                       itemBuilder: (context, index) {
-                        return _buildCard(itemAktif[index]);
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          child: _buildCard(itemAktif[index]),
+                        );
                       },
                     ),
             ),
             if (itemAktif.isNotEmpty)
               Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
                 decoration: BoxDecoration(
-                  border: Border(top: BorderSide(color: Colors.grey.shade300)),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.06),
+                      blurRadius: 12,
+                      offset: const Offset(0, -4),
+                    ),
+                  ],
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -96,10 +119,14 @@ class _KeranjangPageState extends State<KeranjangPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Total', style: TextStyle(color: Colors.grey)),
-                        Text(
-                          'Rp. $_totalHarga',
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        Text('Total', style: TextStyle(color: Colors.grey.shade600)),
+                        AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 200),
+                          child: Text(
+                            'Rp. $_totalHarga',
+                            key: ValueKey(_totalHarga),
+                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
                         ),
                       ],
                     ),
@@ -107,10 +134,14 @@ class _KeranjangPageState extends State<KeranjangPage> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF1A8855),
                         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       ),
                       onPressed: () {},
-                      child: const Text('Checkout', style: TextStyle(color: Colors.white)),
+                      child: const Text(
+                        'Checkout',
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ],
                 ),
@@ -126,28 +157,92 @@ class _KeranjangPageState extends State<KeranjangPage> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Row(
         children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.network(
+              'https://picsum.photos/seed/${item.name}/100/100',
+              width: 56,
+              height: 56,
+              fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => Container(
+                width: 56,
+                height: 56,
+                color: Colors.grey.shade200,
+                child: const Icon(Icons.image, color: Colors.grey),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(item.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-                Text(item.price, style: const TextStyle(fontSize: 12)),
+                const SizedBox(height: 2),
+                Text(item.price, style: TextStyle(fontSize: 12, color: Colors.grey.shade700)),
               ],
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.remove_circle_outline),
-            onPressed: () => _kurang(item),
+          _QuantityStepper(
+            quantity: item.quantity,
+            onAdd: () => _tambah(item),
+            onRemove: () => _kurang(item),
           ),
-          Text('${item.quantity}'),
-          IconButton(
-            icon: const Icon(Icons.add_circle, color: Color(0xFF1A8855)),
-            onPressed: () => _tambah(item),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuantityStepper extends StatelessWidget {
+  final int quantity;
+  final VoidCallback onAdd;
+  final VoidCallback onRemove;
+
+  const _QuantityStepper({
+    required this.quantity,
+    required this.onAdd,
+    required this.onRemove,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1A8855).withOpacity(0.1),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: onRemove,
+            child: const Icon(Icons.remove, size: 18, color: Color(0xFF1A8855)),
+          ),
+          SizedBox(
+            width: 24,
+            child: Text(
+              '$quantity',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1A8855)),
+            ),
+          ),
+          GestureDetector(
+            onTap: onAdd,
+            child: const Icon(Icons.add, size: 18, color: Color(0xFF1A8855)),
           ),
         ],
       ),
