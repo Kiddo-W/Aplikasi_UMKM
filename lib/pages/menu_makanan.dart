@@ -43,7 +43,7 @@ const List<Map<String, dynamic>> daftarKategori = [
   {'label': 'Nasi', 'icon': Icons.rice_bowl},
   {'label': 'Lauk', 'icon': Icons.ramen_dining},
   {'label': 'Sayuran', 'icon': Icons.eco},
-  {'label': 'Minuman', 'icon': Icons.wine_bar},
+  {'label': 'Minuman', 'icon': Icons.local_bar},
 ];
 
 class MenuMakananPage extends StatefulWidget {
@@ -127,36 +127,66 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  if (totalItem > 0)
+                  if (Navigator.canPop(context))
                     Positioned(
-                      right: 0,
+                      left: 0,
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ),
+                  Positioned(
+                    right: 0,
+                    child: AnimatedScale(
+                      scale: totalItem > 0 ? 1 : 0,
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.easeOutBack,
                       child: GestureDetector(
                         onTap: _bukaKeranjang,
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            const Icon(Icons.shopping_cart, color: Colors.white),
-                            Positioned(
-                              right: -6,
-                              top: -6,
-                              child: Container(
-                                padding: const EdgeInsets.all(3),
-                                decoration: const BoxDecoration(
-                                  color: Colors.red,
-                                  shape: BoxShape.circle,
-                                ),
-                                constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
-                                child: Text(
-                                  '$totalItem',
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(color: Colors.white, fontSize: 10),
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.15),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              const Icon(Icons.shopping_cart, color: Colors.white, size: 22),
+                              Positioned(
+                                right: -8,
+                                top: -8,
+                                child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 200),
+                                  transitionBuilder: (child, animation) {
+                                    return ScaleTransition(scale: animation, child: child);
+                                  },
+                                  child: Container(
+                                    key: ValueKey(totalItem),
+                                    padding: const EdgeInsets.all(3),
+                                    decoration: const BoxDecoration(
+                                      color: Colors.redAccent,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
+                                    child: Text(
+                                      '$totalItem',
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),
@@ -266,13 +296,20 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
       child: Row(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
             child: Image.network(
               'https://picsum.photos/seed/${item.name}/100/100',
               width: 60,
@@ -292,20 +329,76 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(item.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-                Text(item.price, style: const TextStyle(fontSize: 12)),
+                const SizedBox(height: 2),
+                Text(item.price, style: TextStyle(fontSize: 12, color: Colors.grey.shade700)),
                 if (item.stock.isNotEmpty)
-                  Text(item.stock, style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                  Text(item.stock, style: TextStyle(fontSize: 11, color: Colors.grey.shade500)),
               ],
             ),
           ),
-          IconButton(
-            icon: const Icon(Icons.remove_circle_outline),
-            onPressed: () => _kurang(item),
+          const SizedBox(width: 8),
+          _QuantityStepper(
+            quantity: item.quantity,
+            onAdd: () => _tambah(item),
+            onRemove: () => _kurang(item),
           ),
-          Text('${item.quantity}'),
-          IconButton(
-            icon: const Icon(Icons.add_circle, color: Color(0xFF1A8855)),
-            onPressed: () => _tambah(item),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuantityStepper extends StatelessWidget {
+  final int quantity;
+  final VoidCallback onAdd;
+  final VoidCallback onRemove;
+
+  const _QuantityStepper({
+    required this.quantity,
+    required this.onAdd,
+    required this.onRemove,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (quantity == 0) {
+      return GestureDetector(
+        onTap: onAdd,
+        child: Container(
+          padding: const EdgeInsets.all(8),
+          decoration: const BoxDecoration(
+            color: Color(0xFF1A8855),
+            shape: BoxShape.circle,
+          ),
+          child: const Icon(Icons.add, color: Colors.white, size: 18),
+        ),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      decoration: BoxDecoration(
+        color: const Color(0xFF1A8855).withOpacity(0.1),
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: onRemove,
+            child: const Icon(Icons.remove, size: 18, color: Color(0xFF1A8855)),
+          ),
+          SizedBox(
+            width: 24,
+            child: Text(
+              '$quantity',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1A8855)),
+            ),
+          ),
+          GestureDetector(
+            onTap: onAdd,
+            child: const Icon(Icons.add, size: 18, color: Color(0xFF1A8855)),
           ),
         ],
       ),
