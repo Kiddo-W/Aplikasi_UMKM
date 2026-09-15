@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'menu_makanan.dart';
 
 class BerandaPage extends StatelessWidget {
   const BerandaPage({super.key});
@@ -183,7 +184,12 @@ class BerandaPage extends StatelessWidget {
                     // Kotak Menu
                     Expanded(
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const MenuMakananPage()),
+                          );
+                        },
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
                           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -290,7 +296,12 @@ class BerandaPage extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const MenuMakananPage()),
+                      );
+                    },
                     child: Row( children: const [
                       Text(
                         'Lihat Semua',
