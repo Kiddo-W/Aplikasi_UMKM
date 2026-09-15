@@ -42,7 +42,7 @@ const List<Map<String, dynamic>> daftarKategori = [
   {'label': 'Nasi', 'icon': Icons.rice_bowl},
   {'label': 'Lauk', 'icon': Icons.ramen_dining},
   {'label': 'Sayuran', 'icon': Icons.eco},
-  {'label': 'Minuman', 'icon': Icons.local_bar},
+  {'label': 'Minuman', 'icon': Icons.wine_bar},
 ];
 
 class MenuMakananPage extends StatefulWidget {
