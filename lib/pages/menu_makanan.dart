@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'keranjang_page.dart';
 
 class MenuItem {
   final String name;
@@ -89,11 +90,21 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
         .toList();
   }
 
+  void _bukaKeranjang() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => KeranjangPage(items: daftarMenu)),
+    );
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final kategoriTampil = _kategoriDipilih != null
         ? [_kategoriDipilih!]
         : const ['Nasi', 'Lauk', 'Sayuran', 'Minuman'];
+
+    final totalItem = daftarMenu.fold<int>(0, (sum, item) => sum + item.quantity);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -102,16 +113,51 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
           children: [
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
               color: const Color(0xFF064D2C),
-              child: const Text(
-                'Menu',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Text(
+                    'Menu',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  if (totalItem > 0)
+                    Positioned(
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: _bukaKeranjang,
+                        child: Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            const Icon(Icons.shopping_cart, color: Colors.white),
+                            Positioned(
+                              right: -6,
+                              top: -6,
+                              child: Container(
+                                padding: const EdgeInsets.all(3),
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                                child: Text(
+                                  '$totalItem',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(color: Colors.white, fontSize: 10),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
             Expanded(
