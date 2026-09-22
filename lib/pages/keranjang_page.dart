@@ -48,10 +48,6 @@ class _KeranjangPageState extends State<KeranjangPage> {
               padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: const BoxDecoration(
                 color: Color(0xFF064D2C),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                ),
               ),
               child: Row(
                 children: [

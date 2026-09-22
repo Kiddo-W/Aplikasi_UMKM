@@ -25,7 +25,8 @@ class PengaturanPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             children: [
-              // 1. Card Login
+              SizedBox(height: 20),
+              // Card Login
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -81,9 +82,9 @@ class PengaturanPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 40),
 
-              // 2. Card Informasi Warteg
+              // Card Informasi Warteg
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -146,7 +147,7 @@ class PengaturanPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // 3. Card Bantuan
+              // Card Bantuan
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -209,7 +210,7 @@ class PengaturanPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // 4. Card Tentang Aplikasi
+              // Card Tentang Aplikasi
               Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -272,7 +273,7 @@ class PengaturanPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
 
-              // 5. Card Keluar
+              // Card Keluar
               Container(
                 decoration: BoxDecoration(
                   color: const Color(0xFFFFF3F2),
