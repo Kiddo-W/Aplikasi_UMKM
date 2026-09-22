@@ -209,7 +209,7 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
                         filled: true,
                         fillColor: Colors.grey.shade100,
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide.none,
                         ),
                       ),

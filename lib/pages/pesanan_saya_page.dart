@@ -27,15 +27,6 @@ class _PesananPageState extends State<PesananPage> {
   // Data Dummy Riwayat Pesanan
   final List<Map<String, dynamic>> _riwayatPesanan = [
     {
-      'po': '#PO-00027',
-      'status': 'Selesai',
-      'statusColor': const Color(0xFF008850),
-      'tanggal': '10/08/2026',
-      'jam': '12:00 - 12:30',
-      'tipe': 'Makan ditempat',
-      'harga': 'Rp37.000',
-    },
-    {
       'po': '#PO-00025',
       'status': 'Selesai',
       'statusColor': const Color(0xFF008850),
@@ -128,15 +119,15 @@ class _PesananPageState extends State<PesananPage> {
                   fillColor: Colors.grey.shade100,
                   contentPadding: const EdgeInsets.symmetric(vertical: 10),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide.none,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide.none,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide.none,
                   ),
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'menu_makanan.dart';
+import 'checkout_page.dart';
 
 class KeranjangPage extends StatefulWidget {
   final List<MenuItem> items;
@@ -131,9 +132,16 @@ class _KeranjangPageState extends State<KeranjangPage> {
                         backgroundColor: const Color(0xFF1A8855),
                         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
                         elevation: 0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                          builder: (context) => const CheckoutPage(),
+                          ),
+                        );
+                      },
                       child: const Text(
                         'Checkout',
                         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
