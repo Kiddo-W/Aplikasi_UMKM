@@ -1,4 +1,6 @@
 import 'package:aplikasi_umkm/pages/menu_makanan.dart';
+import 'package:aplikasi_umkm/pages/pengaturan_page.dart';
+import 'package:aplikasi_umkm/pages/pesanan_saya_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/beranda_page.dart';
 
@@ -15,6 +17,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final List <Widget> _pages = const [
     BerandaPage(),
     MenuMakananPage(),
+    PesananPage(),
+    PengaturanPage(),
   ];
 
   void _onItemTapped(int index) {
