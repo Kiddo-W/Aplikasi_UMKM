@@ -151,7 +151,7 @@ class BerandaPage extends StatelessWidget {
                                 'Pesan',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  fontSize: 14,
                                   color: Colors.black87,
                                 ),
                               ),
@@ -205,7 +205,7 @@ class BerandaPage extends StatelessWidget {
                                 'Menu',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  fontSize: 14,
                                   color: Colors.black87,
                                 ),
                               ),
@@ -251,10 +251,10 @@ class BerandaPage extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               const Text(
-                                'Pesanan saya',
+                                'Riwayat Pesan',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  fontSize: 14,
                                   color: Colors.black87,
                                 ),
                               ),

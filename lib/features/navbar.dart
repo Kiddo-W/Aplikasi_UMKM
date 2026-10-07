@@ -1,6 +1,6 @@
 import 'package:aplikasi_umkm/pages/menu_makanan.dart';
 import 'package:aplikasi_umkm/pages/pengaturan_page.dart';
-import 'package:aplikasi_umkm/pages/pesanan_saya_page.dart';
+import 'package:aplikasi_umkm/pages/riwayat_pesanan_page.dart';
 import 'package:flutter/material.dart';
 import '../pages/beranda_page.dart';
 
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.receipt_long),
-            label: 'Pesanan Saya',
+            label: 'Riwayat Pesan',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
