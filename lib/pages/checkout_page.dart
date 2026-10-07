@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pesanan_berhasil_page.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
@@ -354,7 +355,10 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Aksi ketika tombol "Buat Pesanan" ditekan
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (_) => const PesananBerhasilPage()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,

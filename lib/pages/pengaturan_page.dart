@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'informasi_warteg.dart';
 
 class PengaturanPage extends StatelessWidget {
   const PengaturanPage({super.key});
@@ -92,7 +93,9 @@ class PengaturanPage extends StatelessWidget {
                   border: Border.all(color: const Color(0xFFE0E0E0)),
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => InformasiWartegPage()));
+                  },
                   borderRadius: BorderRadius.circular(12),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),

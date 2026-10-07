@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'menu_makanan.dart';
+import 'riwayat_pesanan_page.dart';
 
 class BerandaPage extends StatelessWidget {
   const BerandaPage({super.key});
@@ -119,9 +120,8 @@ class BerandaPage extends StatelessWidget {
                             'https://picsum.photos/600/250',
                             fit: BoxFit.cover,
                             height: double.infinity,
-                            errorBuilder: (_, __, ___) => Container(
-                              color: const Color(0xFF524B39),
-                            ),
+                            errorBuilder: (_, __, ___) =>
+                                Container(color: const Color(0xFF524B39)),
                           ),
                         ),
                       ],
@@ -138,7 +138,10 @@ class BerandaPage extends StatelessWidget {
                         onTap: () {},
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 8,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16),
@@ -162,7 +165,11 @@ class BerandaPage extends StatelessWidget {
                                   color: Color(0xFFFA9110),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Icon(Icons.assignment_outlined, color: Colors.white, size: 28),
+                                child: const Icon(
+                                  Icons.assignment_outlined,
+                                  color: Colors.white,
+                                  size: 28,
+                                ),
                               ),
                               const SizedBox(height: 10),
                               const Text(
@@ -187,12 +194,17 @@ class BerandaPage extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => const MenuMakananPage()),
+                            MaterialPageRoute(
+                              builder: (_) => const MenuMakananPage(),
+                            ),
                           );
                         },
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 8,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16),
@@ -216,7 +228,11 @@ class BerandaPage extends StatelessWidget {
                                   color: const Color(0xFF775326),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Icon(Icons.restaurant, color: Colors.white, size: 28),
+                                child: const Icon(
+                                  Icons.restaurant,
+                                  color: Colors.white,
+                                  size: 28,
+                                ),
                               ),
                               const SizedBox(height: 10),
                               const Text(
@@ -235,13 +251,21 @@ class BerandaPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    // Kotak Pesanan Saya
+                    // Kotak Riwayat Pesan
                     Expanded(
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => PesananPage()),
+                          );
+                        },
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 8,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(16),
@@ -265,7 +289,11 @@ class BerandaPage extends StatelessWidget {
                                   color: const Color(0xFF1A8855),
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: const Icon(Icons.article_outlined, color: Colors.white, size: 28),
+                                child: const Icon(
+                                  Icons.article_outlined,
+                                  color: Colors.white,
+                                  size: 28,
+                                ),
                               ),
                               const SizedBox(height: 10),
                               const Text(
@@ -286,123 +314,147 @@ class BerandaPage extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 40),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Text(
-                    'Menu',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF333333),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const MenuMakananPage()),
-                      );
-                    },
-                    child: Row( children: const [
-                      Text(
-                        'Lihat Semua',
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Menu',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF333333),
                       ),
-                      SizedBox(width: 4),
-                      Icon(
-                        Icons.chevron_right,
-                        size: 16,
-                        color: Color(0xFF505050),
-                        )
-                    ],)
-                  ),
-                ],),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const MenuMakananPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: const [
+                          Text('Lihat Semua', style: TextStyle(fontSize: 18)),
+                          SizedBox(width: 4),
+                          Icon(
+                            Icons.chevron_right,
+                            size: 16,
+                            color: Color(0xFF505050),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
                 // Kartu Menu
                 const SizedBox(height: 15),
-                Row(children: [
-                  Expanded(child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Column( crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                        child: Image.network(
-                          'https://picsum.photos/300/201',
-                          height: 120,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Container(
-                            height: 120,
-                            color: Colors.grey,
-                          ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.grey),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16),
+                              ),
+                              child: Image.network(
+                                'https://picsum.photos/300/201',
+                                height: 120,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) =>
+                                    Container(height: 120, color: Colors.grey),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(12),
+                              child: Column(
+                                crossAxisAlignment: .start,
+                                children: [
+                                  Text(
+                                    'Rendang',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    'Rp15.000',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Padding(padding: EdgeInsets.all(12),
-                      child: Column(crossAxisAlignment: .start, children: [
-                        Text(
-                          'Rendang',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          'Rp15.000',
-                          style:  TextStyle(
-                            fontSize: 14,
-                            color: Colors.black
-                          ),
-                        )
-                      ],),),
-                    ],),
-                  )),
-                  const SizedBox(width: 15),
-                  Expanded(child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.grey),
                     ),
-                    child: Column( crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                        child: Image.network(
-                          'https://picsum.photos/300/201',
-                          height: 120,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Container(
-                            height: 120,
-                            color: Colors.grey,
-                          ),
+                    const SizedBox(width: 15),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: Colors.grey),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(16),
+                              ),
+                              child: Image.network(
+                                'https://picsum.photos/300/201',
+                                height: 120,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                errorBuilder: (_, __, ___) =>
+                                    Container(height: 120, color: Colors.grey),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(12),
+                              child: Column(
+                                crossAxisAlignment: .start,
+                                children: [
+                                  Text(
+                                    'Ayam Goreng',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 4),
+                                  Text(
+                                    'Rp12.000',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Padding(padding: EdgeInsets.all(12),
-                      child: Column(crossAxisAlignment: .start, children: [
-                        Text(
-                          'Ayam Goreng',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          'Rp12.000',
-                          style:  TextStyle(
-                            fontSize: 14,
-                            color: Colors.black
-                          ),
-                        )
-                      ],),),
-                    ],),
-                  )),
-                ],)
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

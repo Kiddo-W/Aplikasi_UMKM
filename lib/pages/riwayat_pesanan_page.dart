@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'status_pesanan.dart';
 
 class PesananPage extends StatefulWidget {
   const PesananPage({super.key});
@@ -230,7 +231,9 @@ class _PesananPageState extends State<PesananPage> {
                         SizedBox(
                           width: double.infinity,
                           child: OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => StatusPesananPage()));
+                            },
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: Color(0xFF138A56)),
                               shape: RoundedRectangleBorder(
