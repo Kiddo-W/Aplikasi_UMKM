@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'keranjang_page.dart';
 
 class MenuItem {
@@ -100,21 +101,31 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
 
   @override
   Widget build(BuildContext context) {
+    final topPadding = MediaQuery.of(context).padding.top;
     final kategoriTampil = _kategoriDipilih != null
         ? [_kategoriDipilih!]
         : const ['Nasi', 'Lauk', 'Sayuran', 'Minuman'];
 
     final totalItem = daftarMenu.fold<int>(0, (sum, item) => sum + item.quantity);
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Color(0xFF064D2C), // Mewarnai status bar atas
+        statusBarIconBrightness: Brightness.light, // Ikon status bar putih
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
           children: [
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-              color: const Color(0xFF064D2C),
+              padding: EdgeInsets.only(
+                top: topPadding + 16,
+                bottom: 16,
+                left: 16,
+                right: 16,
+              ),
+              color: const Color(0xFF138A56),
               child: Stack(
                 alignment: Alignment.center,
                 children: [
@@ -123,7 +134,7 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -152,7 +163,7 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
                           child: Stack(
                             clipBehavior: Clip.none,
                             children: [
-                              const Icon(Icons.shopping_cart, color: Colors.white, size: 22),
+                              const Icon(Icons.shopping_cart, color: Colors.white, size: 20),
                               Positioned(
                                 right: -8,
                                 top: -8,
@@ -168,7 +179,7 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
                                       color: Colors.redAccent,
                                       shape: BoxShape.circle,
                                     ),
-                                    constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
+                                    constraints: const BoxConstraints(minWidth: 14, minHeight: 14),
                                     child: Text(
                                       '$totalItem',
                                       textAlign: TextAlign.center,

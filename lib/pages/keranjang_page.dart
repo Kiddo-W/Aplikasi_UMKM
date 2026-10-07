@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'menu_makanan.dart';
 import 'checkout_page.dart';
 
@@ -37,18 +38,26 @@ class _KeranjangPageState extends State<KeranjangPage> {
 
   @override
   Widget build(BuildContext context) {
+    final topPadding = MediaQuery.of(context).padding.top;
     final itemAktif = widget.items.where((item) => item.quantity > 0).toList();
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFF7F7F7),
-      body: SafeArea(
-        child: Column(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Color(0xFF138A56), // Mewarnai status bar atas
+        statusBarIconBrightness: Brightness.light, // Ikon status bar putih
+      ),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF7F7F7),
+        body: Column(
           children: [
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 16),
+              padding: EdgeInsets.only(
+                top: topPadding,
+                bottom: 16,
+              ),
               decoration: const BoxDecoration(
-                color: Color(0xFF064D2C),
+                color: Color(0xFF138A56),
               ),
               child: Row(
                 children: [
@@ -138,7 +147,7 @@ class _KeranjangPageState extends State<KeranjangPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                          builder: (context) => const CheckoutPage(),
+                            builder: (context) => const CheckoutPage(),
                           ),
                         );
                       },
