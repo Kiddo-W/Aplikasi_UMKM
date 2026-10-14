@@ -129,7 +129,7 @@ class BerandaPage extends StatelessWidget {
                   ),
                 ),
                 // Bagian main 3 kotak
-                const SizedBox(height: 40),
+                const SizedBox(height: 30),
                 Row(
                   children: [
                     // Kotak Menu
