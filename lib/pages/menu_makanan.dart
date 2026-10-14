@@ -16,6 +16,11 @@ class MenuItem {
     required this.category,
     this.quantity = 0,
   });
+
+  // Path gambar otomatis dari nama menu: huruf kecil, tanpa spasi.
+  // Contoh: 'Ayam Goreng' -> assets/ayamgoreng.png
+  String get imagePath =>
+      'assets/${name.toLowerCase().replaceAll(' ', '')}.png';
 }
 
 final List<MenuItem> daftarMenu = [
@@ -321,8 +326,8 @@ class _MenuMakananPageState extends State<MenuMakananPage> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              'https://picsum.photos/seed/${item.name}/100/100',
+            child: Image.asset(
+              item.imagePath,
               width: 60,
               height: 60,
               fit: BoxFit.cover,

@@ -184,8 +184,8 @@ class _KeranjangPageState extends State<KeranjangPage> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              'https://picsum.photos/seed/${item.name}/100/100',
+            child: Image.asset(
+              item.imagePath,
               width: 56,
               height: 56,
               fit: BoxFit.cover,
