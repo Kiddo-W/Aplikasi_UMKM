@@ -161,7 +161,7 @@ class BerandaPage extends StatelessWidget {
                                 'Menu',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14,
+                                  fontSize: 16,
                                   color: Colors.black87,
                                 ),
                               ),
@@ -175,16 +175,16 @@ class BerandaPage extends StatelessWidget {
                                 child: const Icon(
                                   Icons.restaurant,
                                   color: Colors.white,
-                                  size: 28,
+                                  size: 30,
                                 ),
                               ),
                               const SizedBox(height: 10),
                               const Text(
-                                'Lihat semua\nmenu',
+                                'Lihat semua menu',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   color: Colors.black,
                                   height: 1.2,
                                 ),
@@ -194,7 +194,7 @@ class BerandaPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: 15),
                     // Kotak Riwayat Pesan
                     Expanded(
                       child: InkWell(
@@ -222,7 +222,7 @@ class BerandaPage extends StatelessWidget {
                                 'Riwayat Pesan',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14,
+                                  fontSize: 16,
                                   color: Colors.black87,
                                 ),
                               ),
@@ -236,16 +236,16 @@ class BerandaPage extends StatelessWidget {
                                 child: const Icon(
                                   Icons.article_outlined,
                                   color: Colors.white,
-                                  size: 28,
+                                  size: 30,
                                 ),
                               ),
                               const SizedBox(height: 10),
                               const Text(
-                                'Cek status &\nRiwayat PO',
+                                'Cek status & Riwayat PO',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   color: Colors.black,
                                   height: 1.2,
                                 ),
