@@ -116,7 +116,7 @@ class BerandaPage extends StatelessWidget {
                         ),
                         Expanded(
                           flex: 4,
-                          child: Image.network(
+                          child: Image.asset(
                             'assets/wartegbanner.jpg',
                             fit: BoxFit.cover,
                             height: double.infinity,
