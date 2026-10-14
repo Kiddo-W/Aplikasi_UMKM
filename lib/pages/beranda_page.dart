@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'menu_makanan.dart';
 import 'riwayat_pesanan_page.dart';
 
@@ -7,7 +8,12 @@ class BerandaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+    value: const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // Background status bar transparan
+      statusBarIconBrightness: Brightness.dark, // Ikon HP (jam, baterai) jadi warna GELAP/HITAM
+    ),
+    child: Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -404,6 +410,7 @@ class BerandaPage extends StatelessWidget {
           ),
         ),
       ),
+    ),
     );
   }
 }
