@@ -117,7 +117,7 @@ class BerandaPage extends StatelessWidget {
                         Expanded(
                           flex: 4,
                           child: Image.network(
-                            'https://picsum.photos/600/250',
+                            'assets/wartegbanner.jpg',
                             fit: BoxFit.cover,
                             height: double.infinity,
                             errorBuilder: (_, __, ___) =>
@@ -132,62 +132,6 @@ class BerandaPage extends StatelessWidget {
                 const SizedBox(height: 40),
                 Row(
                   children: [
-                    // Kotak Pesan
-                    Expanded(
-                      child: InkWell(
-                        onTap: () {},
-                        borderRadius: BorderRadius.circular(16),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16,
-                            horizontal: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(color: Colors.grey.shade300),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Text(
-                                'Pesan',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Container(
-                                padding: const EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFFA9110),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: const Icon(
-                                  Icons.assignment_outlined,
-                                  color: Colors.white,
-                                  size: 28,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'Pesan & ambil\nsesuai waktu',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  color: Colors.black,
-                                  height: 1.2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
                     // Kotak Menu
                     Expanded(
                       child: InkWell(
@@ -366,8 +310,8 @@ class BerandaPage extends StatelessWidget {
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(16),
                               ),
-                              child: Image.network(
-                                'https://picsum.photos/300/201',
+                              child: Image.asset(
+                                'assets/rendang.png',
                                 height: 120,
                                 width: double.infinity,
                                 fit: BoxFit.cover,
@@ -417,8 +361,8 @@ class BerandaPage extends StatelessWidget {
                               borderRadius: BorderRadius.vertical(
                                 top: Radius.circular(16),
                               ),
-                              child: Image.network(
-                                'https://picsum.photos/300/201',
+                              child: Image.asset(
+                                'assets/ayamgoreng.png',
                                 height: 120,
                                 width: double.infinity,
                                 fit: BoxFit.cover,

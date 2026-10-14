@@ -1,3 +1,4 @@
+import 'package:aplikasi_umkm/pages/pre-order_page.dart';
 import 'package:flutter/material.dart';
 import 'pesanan_berhasil_page.dart';
 
@@ -165,7 +166,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               // Pengambilan (Waktu)
               InkWell(
                 onTap: () {
-                  // Tambahkan fungsi untuk memilih waktu jika diperlukan
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const PilihWaktuPoPage()));
                 },
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
